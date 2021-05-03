@@ -2,10 +2,12 @@
 (function ($) {
     let today = new Date;
     let dateUpdate = () => {
+
         setInterval(() => {
             today = new Date;
             $('#myCardWrap').html('');
             renderIt()
+
         }, 3600000)
     }
     dateUpdate()
@@ -16,16 +18,14 @@
     if (localStorage.getItem('currentID')) {
         idDefaultVal = parseInt(localStorage.getItem('currentID'));
     }
-    if (localStorage.getItem('card')) {
-        earnings = JSON.parse(localStorage.getItem('card'));
-    }
-    $('#newCard').on('click',()=>$('#myModal').modal('show'));
+
+    $('#newCard').on('click', () => $('#myModal').modal('show'));
 
     //Cal does the conversion of usd to naira 
     let calc = () => {
         usdInp = $('#usdInp').val();
         xchRateInp = $('#xchRate').val();
-        if ((parseInt(usdInp)) > 0 || parseInt(xchRateInp) > 0) {
+        if (usdInp != '' && xchRateInp != '') {
             $('#xchRes').val(parseInt(usdInp) * parseInt(xchRateInp));
         }
     }
@@ -98,12 +98,21 @@
             $('#myCardWrap').append(htmlTemp);
         });
 
-
+        $('#earnCount').html(earnings.length + '  payments');
+    }
+    if (localStorage.getItem('card')) {
+        earnings = JSON.parse(localStorage.getItem('card'));
     }
     if (earnings.length >= 1) {
         //This updates the number of earning cards created
         $('#earnCount').html(earnings.length + '  payments');
         renderIt();
+    } else {
+        $('#myCardWrap').html(`
+            <div class = "text-center">
+                <p class = "text-white mt-5">Create your first earnings Card</>
+            </div>
+        `);
     }
 
     let getEarnDetails = () => {
@@ -146,12 +155,36 @@
                     earnings.splice(index, 1);
                     localStorage.setItem('card', JSON.stringify(earnings));
                     $(e.target).parent().remove();
-                    console.log(earnings);
+                    // idDefaultVal--;
+                    $('#earnCount').html(earnings.length + '  payments');
                 }
             });
         } else {
             return false;
         }
     })
+    // $('')
+    let openNav = ()=>{
+        $('#mySidebar').css("width", "250px");
+        $('#myCardWrap').css('display', "none");
+    }
+    let closeNav = ()=>{
+        $('#mySidebar').css("width", "0");
+        $('#myCardWrap').css('display', "block");
+    }
+    $('.fa-bars').on('click', ()=>{
+        openNav();
+    });
+    $('.closebtn').on('click', ()=>{
+        closeNav();
+    });
+    $('#convPage').on('click',()=>{
 
+    })
+    $('#calcPage').on('click',()=>{
+        $('#mySidebar').css("width", "0");
+        $('#earnFace').html(`
+        <div class = "bg-dark text-white m-0 p-0 container-fluid"><h1 class="p-5">Calculator here</h1></div>
+        `)
+    })
 })(jQuery);
