@@ -12,14 +12,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <style>
         body {
             padding: 0;
-            margin: 0;
+            /* margin: 0; */
         }
 
         .top-bar {
             background-color: #1f213a;
+            margin: 0;
         }
 
 
@@ -29,7 +31,7 @@
 
         }
 
-       
+
 
         .my-new {
             /* border-radius: 30%; */
@@ -45,11 +47,9 @@
             margin: 0;
             background-color: white;
             border-radius: 50%;
-            /* padding: 3px 9px; */
-            padding: 6px 10px;
+            padding: 4.5px 10px;
             color: #7c5dfa;
             font-weight: bolder;
-            /* font-size: larger; */
         }
 
         .my-card {
@@ -58,24 +58,29 @@
             /* padding: 50px; */
             height: 120px;
         }
-        .modal-body input{
+
+        .modal-body input {
             background-color: #1f213a;
             color: #fff;
         }
-        .modal-body input:disabled{
+
+        .modal-body input:disabled {
             background-color: #1f213a;
             color: #fff;
         }
-        .modal-body input::placeholder{
+
+        .modal-body input::placeholder {
             /* background-color: #1f213a; */
             color: #fff;
         }
-        .my-menu-icon{
+
+        .my-menu-icon {
             color: #7c5dfa;
         }
+
         /* For my Sidebar */
-        .sidebar{
-            height:100%;
+        .sidebar {
+            height: 100%;
             width: 0;
             position: fixed;
             z-index: 1;
@@ -86,6 +91,7 @@
             padding-top: 60px;
             transition: 0.5s;
         }
+
         /* My sidebar links */
         .sidebar span {
             padding: 8px 8px 8px 32px;
@@ -95,95 +101,46 @@
             display: block;
             transition: 0.3s;
         }
-        .sidebar span:hover{
+
+        .sidebar span:hover {
             color: #f1f1f1;
         }
-        .sidebar .closebtn{
+
+        .sidebar .closebtn {
             position: absolute;
             top: 0;
             right: 25px;
             font-size: 36px;
-            margin-left: 50px;            
+            margin-left: 50px;
         }
-        #main{
+
+        #main {
             transition: margin-left .5s;
             padding: 20px;
             margin: 0;
         }
-        @media screen and (max-height: 450px){
-            .sidebar{padding-top: 15px;}
-            .sidebar a {font-size:18px;}
+        .calc-disp{
+            border: 2px solid #7c5dfa;
+            /* margin: 0px 5px; */
+        }
+        .btn-calc>span{
+            padding: 20px;
+            background-color: #7c5dfa;
+            /* margin-right: 5px; */
+        }
+        @media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+            .sidebar a {
+                font-size: 18px;
+            }
         }
     </style>
 </head>
 
 <body style="background-color: #141625;">
-    <div id="mainWrapper">
-        <div id="mySidebar" class="sidebar">
-            <span href="javascript:void(0)" class="closebtn" >&times;</span>
-            <span id="convPage">Converter</span>
-            <span id="calcPage">Calculator</span>
-            <span href="#">About</span>
-        </div>
-    
-        <div class="top-bar pt-3 pb-3 row">
-            <div class="col-6">
-                <span class="my-menu-icon top-left h1 fas fa-bars ml-2"></span>
-            </div>
-            <!-- <div class="col-sm-4"></div> -->
-            <div class="col-6 text-right">
-                <span class="top-right text-white p-4 font-weight-bold">Charayo</span>
-            </div>
-        </div>
-        <div class="m-0 p-0" id="earnFace">
-            <div class="row pt-3 pb-3 pr-1 pl-1">
-                <div class="col-4">
-                    <div class="row ml-2">
-                        <h4 class="text-white ">Earnings</h4>
-                        <p class="text-white" id="earnCount">0 payment</p>
-                    </div>
-                </div>
-                <div class="col-8 text-right">
-                    <span class="text-white mr-2">Filter</span>
-                    <button id="newCard" class="btn badge-pill my-new text-white" style="padding: 10px 15px;"><span
-                            class="plus-rnd mr-1">&plus;</span> New</button>
-                </div>
-            </div>
-            <!-- List of earnings is rendered here -->
-            <div class="container-fluid mx-auto" id="myCardWrap">
-                
-            </div>
-        
-            <!-- My Add Earning modal -->
-            <div class="modal" id="myModal" >
-                <div class="modal-dialogue modal-dialog-centered modal-lg">
-                    <div class="modal-content card shadow-sm" style="background-color: #141625;">
-                        <!-- Modal Header -->
-                        <div class="modal-header text-white">
-                            <h4 class="modal-title">Add Earning</h4>
-                            <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
-                        </div>
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <input type="text" class="form-control mb-2" placeholder="Account username here" required id="acctNamInp" maxlength="25">
-                            <input type="number" class="form-control mb-2" placeholder="Amount in USD" required id="usdInp">
-                            <input type="number" class="form-control mb-2" placeholder="Enter USD to Naira Exchange Value" required id="xchRate">
-                            <input type="number" class="form-control mb-2" placeholder="USD to Naira Preview Value"  id="xchRes" disabled>
-                            <input type="text" name="begin" class="form-control" id="dueDate" placeholder="mm/dd/yyyy">
-                            <textarea name="note" cols="30" rows="10" class="form-control mt-1" maxlength="500" id="noteInp"></textarea>
-                            <input type="button" class="btn mybg text-white mt-1 d-block" value="Add" id="addBtn">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal" id="closeMod">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-    </div>
-    
-    <script src="./main.js"></script>
 </body>
-
+<script src="./main.js"></script>
 </html>
