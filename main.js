@@ -261,7 +261,7 @@
         $('#calcPage').on('click', () => {
             $('#mySidebar').css("width", "0");
             $('#earnFace').html(`
-            <div class = "p-0 container-fluid" style ="height:89vh">
+            <div class = "p-0 container-fluid">
                 <div class="bg-light  calc-disp mb-4"  >
                     <span class="h2" id="inpDisp"></span>
                     <span class="h2" id="resDisp"></span>
