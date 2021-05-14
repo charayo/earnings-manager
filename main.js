@@ -267,7 +267,7 @@
                     <span class="h2" id="resDisp"></span>
                 </div>
 
-                <div class="container ml-0 mr-0 mt-4 p-0 text-center btn-pad" style ="width:100vw">
+                <div class="container ml-0 mr-0 mt-4 p-0 text-center btn-pad fixed-bottom" style ="width:100vw">
                     <div style ="width:100vw; justify-content:space-around " class="d-flex text-white mt-4">
                         <span class="h2 numBtn p-4 m-1 ">7</span>
                         <span class="h2 numBtn p-4 m-1 ">8</span>
@@ -301,7 +301,7 @@
                         <span class="h3 equBtn p-4 m-1">=</span>
                     </div>
 
-                    <div class="text-white text-center">
+                    <div class="text-white text-center mb-4">
                         <span class ="btn my-new text-white comBtn">minus 20%</span>
                     </div>
                     
