@@ -256,27 +256,148 @@
             mainJS();
             $('#myCardWrap').css('display', "d-block");
         });
+
+        //Calculator Section of the App
         $('#calcPage').on('click', () => {
             $('#mySidebar').css("width", "0");
             $('#earnFace').html(`
             <div class = "p-0 container-fluid">
-            <div class="bg-light p-5 calc-disp"></div>
-                <div class="container row">
-                    <div class=" btn-calc">
-                        <span class="m-2 p-4 ">7</span>
-                        <span class="m-2 p-4 ">7</span>
-                        <span class="m-2 p-4 ">7</span>
-                        <span class="m-2 p-4 ">7</span>
-                        <span class="m-2 p-4 ">7</span>
-                    </div>
+                <div class="bg-light  calc-disp"  >
+                    <span class="h2" id="inpDisp"></span>
+                    <span class="h2" id="resDisp"></span>
                 </div>
-            
-            
-            
+
+                <div class="container ml-0 mr-0 p-0 text-c">
+                    <div class="d-flex text-white">
+                        <span class="h2 numBtn p-4 m-1 ">7</span>
+                        <span class="h2 numBtn p-4 m-1 ">8</span>
+                        <span class="h2 numBtn p-4 m-1 ">9</span>
+                        <span class="h2 oprBtn p-4 m-1 ">/</span>
+                        
+                        <span class="h2 delBtn p-4 m-1">D</span>
+                    </div>
+                    <div class="d-flex text-white">
+                        <span class="h2 numBtn p-4 m-1 ">4</span>
+                        <span class="h2 numBtn p-4 m-1 ">5</span>
+                        <span class="h2 numBtn p-4 m-1 ">6</span>
+                        <span class="h2 oprBtn p-4 m-1 ">x</span>
+                        
+                        <span class="h3 p-4 m-1 clrBtn">C</span>
+                    </div>
+                    <div class="d-flex text-white">
+                        <span class="h2 numBtn p-4 m-1 ">1</span>
+                        <span class="h2 numBtn p-4 m-1 ">2</span>
+                        <span class="h2 numBtn p-4 m-1 ">3</span>
+                        <span class="h2 oprBtn p-4 m-1 ">-</span>
+                        
+                        <span class="h3 p-4 m-1"></span>
+                    </div>
+                    <div class="d-flex text-white">
+                        <span class="h2 numBtn p-4 m-1 ">0</span>
+                        <span class="h2 decBtn p-4 m-1 ">.</span>
+                        <span class="h2 oprBtn p-4 m-1 modBtn">%</span>
+                        <span class="h2 oprBtn p-4 m-1 ">+</span>
+                        
+                        <span class="h3 equBtn p-4 m-1">=</span>
+                    </div>
+
+                    <div class="text-white text-center">
+                        <span class ="btn my-new text-white comBtn">minus 20%</span>
+                    </div>
+                    
+                </div>
             
             </div>
             `)
+            let btnOprStatus = false;
+            let decBtnStatus = false;
+            let val, val2;
+            let delFunc = () => {
+                val2 = val.slice(0, val.length - 1);
+                $('#inpDisp').html(val2);
+            }
+            let calcFunc = () => {
+                val = val.replace(/x/g, "*");
+                $('#resDisp').html(eval(val))
+            }
+            let addClick = () => {
+                $('body').on('click', (e) => {
+                    if (e.target.classList.contains('numBtn')) {
+                        $('#inpDisp').append($(e.target).html())
+                        val = $('#inpDisp').html();
+                        if (btnOprStatus == true) {
+                            calcFunc();
+                            btnOprStatus = false;
+                        }
+
+                    } else if (e.target.classList.contains('oprBtn') && btnOprStatus == false && $('#inpDisp').html() != '') {
+                        btnOprStatus = true;
+                        decBtnStatus = false;
+                        $('#inpDisp').append($(e.target).html());
+
+                    } else if (e.target.classList.contains('delBtn')) {
+
+                        val = $('#inpDisp').html();
+                        if (val != "") {
+                            if (Number(val[val.length - 1]) >= 0) {
+                                btnOprStatus = true;
+                                // console.log('del a num');
+                                delFunc();
+                                val = val2.slice(0, val2.length - 1);
+                                calcFunc();
+
+                            } else {
+                                btnOprStatus = false;
+                                // console.log('del an opr');
+                                delFunc();
+                            }
+                        }
+                    } else if (e.target.classList.contains('equBtn')) {
+                        $('#inpDisp').html($('#resDisp').html());
+                        $('#resDisp').html('');
+                    } else if (e.target.classList.contains('clrBtn')) {
+                        btnOprStatus = false;
+                        decBtnStatus =false;
+                        val = 0;
+                        val2 = 0;
+                        $('#inpDisp').html('');
+                        $('#resDisp').html('');
+                    } else if (e.target.classList.contains('comBtn')) {
+                        let comFunc = () => {
+                            val2 = 20 / 100 * val;
+                            val = val - val2;
+                            $('#resDisp').html(val);
+                            $('#inpDisp').html('');
+                        }
+                        if ($('#resDisp').html() == '') {
+                            val = $('#inpDisp').html();
+                            comFunc();
+                        } else {
+                            val = $('#resDisp').html();
+                            comFunc();
+                        }
+                    } else if (e.target.classList.contains('decBtn') && decBtnStatus == false) {
+                        $('#inpDisp').append($(e.target).html());
+                        btnOprStatus = true;
+                        decBtnStatus = true;
+                    }
+
+                })
+            }
+            addClick();
         })
+
+
+
+
+
+
+
+
+
+
+
+
     }
     mainJS();
     // $('')
