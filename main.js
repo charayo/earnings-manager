@@ -261,14 +261,14 @@
         $('#calcPage').on('click', () => {
             $('#mySidebar').css("width", "0");
             $('#earnFace').html(`
-            <div class = "p-0 container-fluid">
-                <div class="bg-light  calc-disp"  >
+            <div class = "p-0 container-fluid" style ="height:89vh">
+                <div class="bg-light  calc-disp mb-4"  >
                     <span class="h2" id="inpDisp"></span>
                     <span class="h2" id="resDisp"></span>
                 </div>
 
-                <div class="container ml-0 mr-0 p-0 text-c">
-                    <div class="d-flex text-white">
+                <div class="container ml-0 mr-0 mt-4 p-0 text-center btn-pad">
+                    <div class="d-flex text-white mt-4">
                         <span class="h2 numBtn p-4 m-1 ">7</span>
                         <span class="h2 numBtn p-4 m-1 ">8</span>
                         <span class="h2 numBtn p-4 m-1 ">9</span>
