@@ -128,7 +128,7 @@
                 // console.log(dueDate > currentDate);
                 let bootsrap, payStatus;
                 if (dueDate > currentDate) {
-                    bootsrap = "btn-warning text-warning";
+                    bootstrap = "btn-warning text-warning";
                     payStatus = "Pending";
                     icon = "fa fa-spinner";
                 } else if (dueDate < currentDate) {
