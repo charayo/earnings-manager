@@ -267,8 +267,8 @@
                     <span class="h2" id="resDisp"></span>
                 </div>
 
-                <div class="container ml-0 mr-0 mt-4 p-0 text-center btn-pad">
-                    <div class="d-flex text-white mt-4">
+                <div class="container ml-0 mr-0 mt-4 p-0 text-center btn-pad" style ="width:100vw">
+                    <div style ="width:100vw; justify-content:space-around " class="d-flex text-white mt-4">
                         <span class="h2 numBtn p-4 m-1 ">7</span>
                         <span class="h2 numBtn p-4 m-1 ">8</span>
                         <span class="h2 numBtn p-4 m-1 ">9</span>
@@ -276,7 +276,7 @@
                         
                         <span class="h2 delBtn p-4 m-1">D</span>
                     </div>
-                    <div class="d-flex text-white">
+                    <div style ="width:100vw; justify-content:space-around " class="d-flex text-white">
                         <span class="h2 numBtn p-4 m-1 ">4</span>
                         <span class="h2 numBtn p-4 m-1 ">5</span>
                         <span class="h2 numBtn p-4 m-1 ">6</span>
@@ -284,7 +284,7 @@
                         
                         <span class="h3 p-4 m-1 clrBtn">C</span>
                     </div>
-                    <div class="d-flex text-white">
+                    <div style ="width:100vw; justify-content:space-around " class="d-flex text-white">
                         <span class="h2 numBtn p-4 m-1 ">1</span>
                         <span class="h2 numBtn p-4 m-1 ">2</span>
                         <span class="h2 numBtn p-4 m-1 ">3</span>
@@ -292,7 +292,7 @@
                         
                         <span class="h3 p-4 m-1"></span>
                     </div>
-                    <div class="d-flex text-white">
+                    <div style ="width:100vw; justify-content:space-around " class="d-flex text-white">
                         <span class="h2 numBtn p-4 m-1 ">0</span>
                         <span class="h2 decBtn p-4 m-1 ">.</span>
                         <span class="h2 oprBtn p-4 m-1 modBtn">%</span>
