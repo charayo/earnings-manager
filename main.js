@@ -413,9 +413,9 @@
                             <input type="button" class ="btn btn-primary form-control" value = "Convert" id = "convert">
                         </div>
                     </div>
-                    <div class = "m-2 card p-2" >
-                        <span id="fromDisp">1 USD = </span>
-                        <h2 id ="convResDisp">380NGN </h2>
+                    <div class = "m-2 card p-2 d-none" id="output">
+                        <span id="fromDisp"></span>
+                        <h2 id ="convResDisp"></h2>
                     </div>
                 </div>
             `);
@@ -424,7 +424,7 @@
             let amount, toCur, fromCur, exchRes;
             let exchPairFrom, exchPairTo;
             let fetch_currency = () => {
-                fetch("https://api.currencylayer.com/live?access_key=61bc285c20a8423370944e9f1ea330de", {
+                fetch("http://api.currencylayer.com/live?access_key=61bc285c20a8423370944e9f1ea330de", {
                     method: "GET"
                 }).then(res => {
                     return res.json()
@@ -493,6 +493,7 @@
                 $('#convResDisp').html(exchRes + toCur);
             }
             $('#convert').on('click', () => {
+                $('#output').removeClass('d-none');
                 valueGetter();
                 convCalcFunc();
             })
