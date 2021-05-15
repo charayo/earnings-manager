@@ -413,9 +413,10 @@
                             <input type="button" class ="btn btn-primary form-control" value = "Convert" id = "convert">
                         </div>
                     </div>
-                    <div class = "m-2 card p-2 d-none" id="output">
+                    <div class = "m-1 card p-2 d-none" id="output">
                         <span id="fromDisp"></span>
-                        <h2 id ="convResDisp"></h2>
+                        <h3 id ="convResDisp"></h3>
+                        <p id= "convRate"></p>
                     </div>
                 </div>
             `);
@@ -489,8 +490,10 @@
                 })
 
                 exchRes = (Number(amount) * Number(initRes1/initRes2));
+                exchRes = exchRes.toFixed(2);
                 $('#fromDisp').html(amount + fromCur + ' = ')
                 $('#convResDisp').html(exchRes + toCur);
+                $('#convRate').html(`1${fromCur} = ${Number(initRes1/initRes2).toFixed(2)}${toCur}`)
             }
             $('#convert').on('click', () => {
                 $('#output').removeClass('d-none');
