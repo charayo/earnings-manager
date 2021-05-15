@@ -357,7 +357,7 @@
                         $('#resDisp').html('');
                     } else if (e.target.classList.contains('clrBtn')) {
                         btnOprStatus = false;
-                        decBtnStatus =false;
+                        decBtnStatus = false;
                         val = 0;
                         val2 = 0;
                         $('#inpDisp').html('');
@@ -387,7 +387,116 @@
             addClick();
         })
 
+        $('#convPage').on('click', () => {
+            $('#mySidebar').css("width", "0");
+            $('#earnFace').html(`
+                <div class="card mx-auto p-5 m-5" style = "width:90%">
+                    <div class="text-center">
+                        <h3 class="">Converter</h3> 
+                    </div>
+                    <div class="">
+                        <div class = "form-group">
+                            <label>Amount</label>
+                            <input class = "form-control" type ="text" value ="1" id="amount">
+                        </div>
+                        <div class = "form-group">
+                            <label for"sel1">From</label>
+                            <select class = "form-control" type ="text" id="sel1">
+                            </select>
+                        </div>
+                        <div class = "form-group">
+                            <label for"sel2">To</label>
+                            <select class = "form-control" type ="text" id="sel2">
+                            </select>
+                        </div>
+                        <div class = "form-group">
+                            <input type="button" class ="btn btn-primary form-control" value = "Convert" id = "convert">
+                        </div>
+                    </div>
+                    <div class = "m-2 card p-2" >
+                        <span id="fromDisp">1 USD = </span>
+                        <h2 id ="convResDisp">380NGN </h2>
+                    </div>
+                </div>
+            `);
+            let contCurr = [];
+            let usdPairs = [];
+            let amount, toCur, fromCur, exchRes;
+            let exchPairFrom, exchPairTo;
+            let fetch_currency = () => {
+                fetch("http://api.currencylayer.com/live?access_key=61bc285c20a8423370944e9f1ea330de", {
+                    method: "GET"
+                }).then(res => {
+                    return res.json()
+                }).then((data) => {
+                    let apiPairs = data.quotes;
+                    usdPairs = Object.entries(apiPairs);
+                    let here = Object.keys(data.quotes);
+                    here.forEach(element => {
+                        contCurr.push(element.replace("USD", ""));
+                    });
+                    contCurr.forEach(element => {
+                        if (element == "USD") {
+                            $('#sel1').append(`
+                                <option selected>${element}</option>
+                            `)
+                        } else {
+                            $('#sel1').append(`
+                            <option>${element}</option>
+                            `)
+                        }
 
+                        if (element == "NGN") {
+                            $('#sel2').append(`
+                                <option selected>${element}</option>
+                            `)
+                        } else {
+                            $('#sel2').append(`
+                            <option>${element}</option>
+                            `)
+                        }
+                    });
+
+                })
+
+            }
+            fetch_currency();
+            let valueGetter = () => {
+                amount = $('#amount').val();
+                fromCur = $('#sel1').val();
+                toCur = $('#sel2').val();
+            }
+            let initRes1,initRes2;
+            let convCalcFunc = () => {
+                exchPairFrom = "USD" + fromCur;
+                exchPairTo = "USD" + toCur;
+                usdPairs.forEach(element => {
+
+                    if (element[0] == exchPairFrom) {
+                        console.log(element);
+                         rate1 = element[1];
+                        rate1 = Number(rate1);
+                        initRes1 = 1 / rate1;
+
+                    }
+                    if (element[0] == exchPairTo) {
+                        console.log(element);
+                        let rate2 = element[1];
+                        rate2 = Number(rate2);
+                        initRes2 = 1 / rate2;
+
+                    }
+                })
+
+                exchRes = (Number(amount) * Number(initRes1/initRes2));
+                $('#fromDisp').html(amount + fromCur + ' = ')
+                $('#convResDisp').html(exchRes + toCur);
+            }
+            $('#convert').on('click', () => {
+                valueGetter();
+                convCalcFunc();
+            })
+        })
 
 
 
