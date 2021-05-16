@@ -204,6 +204,7 @@
                     dueDate: dateInp,
                     usd: `${usdInp}`,
                     Id: `${idDefaultVal}`,
+                    note: `${noteInp}`
                 };
                 earnings.push(data);
                 localStorage.setItem('card', JSON.stringify(earnings));
