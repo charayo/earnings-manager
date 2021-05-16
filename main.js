@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="col-8 text-right p-0">
-                        <span class="text-white mr-2 ">Filter</span>
+                        <span class="text-white mr-2 dropdown-toggle">Filter</span>
                         <button id="newCard" class="btn badge-pill my-new text-white mr-2" style="padding: 10px 15px;"><span
                                 class="plus-rnd mr-1">&plus;</span> New</button>
                     </div>
@@ -426,7 +426,7 @@
             let amount, toCur, fromCur, exchRes;
             let exchPairFrom, exchPairTo;
             let fetch_currency = () => {
-                fetch("https://api.currencylayer.com/live?access_key=61bc285c20a8423370944e9f1ea330de", {
+                fetch("http://api.currencylayer.com/live?access_key=61bc285c20a8423370944e9f1ea330de", {
                     method: "GET"
                 }).then(res => {
                     return res.json()
@@ -462,7 +462,7 @@
                 })
 
             }
-            fetch_currency();
+            // fetch_currency();
             let valueGetter = () => {
                 amount = $('#amount').val();
                 fromCur = $('#sel1').val();
