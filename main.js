@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="col-8 text-right p-0">
-                        <span class="text-white mr-2 dropdown-toggle">Filter</span>
+                        <span class="text-white mr-2 ">Filter</span>
                         <button id="newCard" class="btn badge-pill my-new text-white mr-2" style="padding: 10px 15px;"><span
                                 class="plus-rnd mr-1">&plus;</span> New</button>
                     </div>
