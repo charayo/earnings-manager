@@ -426,7 +426,7 @@
             let amount, toCur, fromCur, exchRes;
             let exchPairFrom, exchPairTo;
             let fetch_currency = () => {
-                fetch("http://api.currencylayer.com/live?access_key=61bc285c20a8423370944e9f1ea330de", {
+                fetch("https://api.currencylayer.com/live?access_key=61bc285c20a8423370944e9f1ea330de", {
                     method: "GET"
                 }).then(res => {
                     return res.json()
@@ -462,7 +462,7 @@
                 })
 
             }
-            // fetch_currency();
+            fetch_currency();
             let valueGetter = () => {
                 amount = $('#amount').val();
                 fromCur = $('#sel1').val();
