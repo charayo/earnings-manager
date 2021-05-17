@@ -426,8 +426,8 @@
             let amount, toCur, fromCur, exchRes;
             let exchPairFrom, exchPairTo;
             let fetch_currency = () => {
-                fetch("https://api.currencylayer.com/live?access_key=61bc285c20a8423370944e9f1ea330de", {
-                    method: "GET"
+                fetch("http://api.currencylayer.com/live?access_key=61bc285c20a8423370944e9f1ea330de", {
+                    method: "GET", type:"no-cors"
                 }).then(res => {
                     return res.json()
                 }).then((data) => {
